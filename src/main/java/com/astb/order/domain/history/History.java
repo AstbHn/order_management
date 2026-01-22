@@ -1,4 +1,4 @@
-package com.astb.order.domain;
+package com.astb.order.domain.history;
 
 import lombok.Data;
 
