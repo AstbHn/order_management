@@ -16,4 +16,4 @@ logging:
     console: "%d{HH:mm:ss} %-5level %msg%n"
 
 server:
-  port: 9777
+  port: 9787
