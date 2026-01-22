@@ -8,12 +8,12 @@
             parameterType="string"
             resultType="User">
         SELECT
-            user_id AS userId,
-            password AS password,
-            role AS role,
-            address AS address <!--도메인 명과 맞추기-->
+        u_id   AS userId,
+        u_pwd  AS password,
+        u_role AS role,
+        u_addr AS address <!--도메인 명과 맞추기-->
         FROM user_t
-        WHERE user_id = #{userId}
+        WHERE u_id = #{userId}
     </select>
 
     <!-- 회원가입 -->

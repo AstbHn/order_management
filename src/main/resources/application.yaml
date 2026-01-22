@@ -2,7 +2,7 @@ spring:
   application:
     name: order
   datasource:
-    url: jdbc:mysql://localhost:3306/menuDB?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/astdb?serverTimezone=Asia/Seoul
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
