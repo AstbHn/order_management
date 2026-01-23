@@ -13,8 +13,7 @@
         WHERE u_id = #{userId}
     </select>
 
-    <select id="findById"
-            resultType="com.astb.order.domain.store.Store">
+    <select id="findById" resultType="com.astb.order.domain.store.Store">
         SELECT
         s_id AS storeId,
         u_id AS userId,
@@ -24,8 +23,7 @@
         WHERE s_id = #{storeId}
     </select>
 
-    <select id="findByCategory"
-            resultType="com.astb.order.domain.store.Store">
+    <select id="findByCategory" resultType="com.astb.order.domain.store.Store">
         SELECT
         s_id AS storeId,
         u_id AS userId,

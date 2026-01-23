@@ -8,8 +8,7 @@
         VALUES (#{storeId}, #{name}, #{price})
     </insert>
 
-    <select id="findById"
-            resultType="com.astb.order.domain.menu.Menu">
+    <select id="findById" resultType="com.astb.order.domain.menu.Menu">
         SELECT
         m_id AS menuId,
         s_id AS storeId,
@@ -19,8 +18,7 @@
         WHERE m_id = #{menuId}
     </select>
 
-    <select id="findByStoreId"
-            resultType="com.astb.order.domain.menu.Menu">
+    <select id="findByStoreId" resultType="com.astb.order.domain.menu.Menu">
         SELECT
         m_id AS menuId,
         s_id AS storeId,
