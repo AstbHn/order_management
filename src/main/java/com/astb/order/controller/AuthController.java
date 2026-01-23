@@ -35,7 +35,7 @@ public class AuthController {
             @Valid SignupDTO dto,
             BindingResult result
     ) {
-        /* === 회원가입 시도 === */
+        // 회원가입 시도
         if (result.hasErrors()) {
             return "auth/register";
         }

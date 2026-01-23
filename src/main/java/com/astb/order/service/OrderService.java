@@ -22,12 +22,12 @@ public class OrderService {
     private final OrderItemMapper orderItemMapper;
     private final MenuMapper menuMapper;
 
-    /** 주문 등록 */
+    //주문등록
     public void createOrder(String userId,
                             Long storeId,
                             List<Long> menuIds,
                             List<Integer> quantities) {
-
+        //주문 넣은 상품
         List<OrderItem> items = new ArrayList<>();
 
         for (int i = 0; i < menuIds.size(); i++) {

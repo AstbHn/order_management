@@ -14,18 +14,22 @@ public class StoreService {
     private final StoreMapper storeMapper;
 
     public void registerStore(Store store) {
+        //가게 등록
         storeMapper.insertStore(store);
     }
 
     public List<Store> findByUserId(String userId) {
+        //유저 아이디를 이용한 가게 조회
         return storeMapper.findByUserId(userId);
     }
 
     public List<Store> findByCategory(String category) {
+        //카테고리를 이용한 가게 조회
         return storeMapper.findByCategory(category);
     }
 
     public Store findById(Long storeId) {
+        //가게 아이디를 이용한 가게 조회
         return storeMapper.findById(storeId);
     }
 

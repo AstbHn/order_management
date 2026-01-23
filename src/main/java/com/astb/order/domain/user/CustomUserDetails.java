@@ -16,7 +16,7 @@ public class CustomUserDetails implements UserDetails {
         this.user = user;
     }
 
-    // [권한 정보 반환]
+    // 권한 정보 반환
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(
@@ -24,43 +24,43 @@ public class CustomUserDetails implements UserDetails {
         );
     }
 
-    //  [비밀번호 반환]
+    // 비밀번호 반환
     @Override
     public String getPassword() {
         return user.getPassword();
     }
 
-    // [사용자 식별값 반환]
+    // 사용자 식별값 반환
     @Override
     public String getUsername() {
         return user.getUserId();
     }
 
-    //  [계정 만료 여부]
+    // 계정 만료 여부
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    // [계정 잠금 여부]
+    // 계정 잠금 여부
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    // [자격 증명 만료 여부]
+    // 자격 증명 만료 여부
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    //[계정 활성화 여부]
+    // 계정 활성화 여부
     @Override
     public boolean isEnabled() {
         return true;
     }
 
-    // [도메인 User 객체 접근용 메서드]
+    // 도메인 User 객체 접근용 메서드
     public User getUser() {
         return user;
     }

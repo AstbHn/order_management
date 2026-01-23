@@ -21,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/client")
 public class ClientController {
+    //고객 컨트롤러
     private final StoreService storeService;
     private final MenuService menuService;
     private final OrderService orderService;
@@ -32,7 +33,7 @@ public class ClientController {
 
     @GetMapping("/stores")
     public String storeList(@RequestParam String category, Model model) {
-
+        //선택한 카테고리에 포함된 가게 리스트
         List<Store> stores = storeService.findByCategory(category);
 
         model.addAttribute("category", category);
@@ -43,7 +44,7 @@ public class ClientController {
 
     @GetMapping("/order")
     public String orderPage(@RequestParam Long storeId, Model model) {
-
+        //가게 아이디를 사용한 가게 및 메뉴 조회
         Store store = storeService.findById(storeId);
         List<Menu> menus = menuService.findByStoreId(storeId);
 
@@ -60,7 +61,7 @@ public class ClientController {
             @RequestParam List<Long> menuIds,
             @RequestParam List<Integer> quantities
     ) {
-
+        //주문
         orderService.createOrder(
                 user.getUsername(),
                 storeId,
