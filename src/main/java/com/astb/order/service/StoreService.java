@@ -21,5 +21,13 @@ public class StoreService {
         return storeMapper.findByUserId(userId);
     }
 
+    public List<Store> findByCategory(String category) {
+        return storeMapper.findByCategory(category);
+    }
+
+    public Store findById(Long storeId) {
+        return storeMapper.findById(storeId);
+    }
+
 }
 

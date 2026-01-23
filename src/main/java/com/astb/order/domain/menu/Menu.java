@@ -8,5 +8,5 @@ public class Menu {
     private Long menuId;
     private Long storeId;
     private String name;
-    private Long price;
+    private Integer price;
 }

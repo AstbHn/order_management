@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>음식점 주문[고객]</title>
+</head>
+<body>
+
+<h2 th:text="${category} + ' 가게 목록'"></h2>
+<ul>
+  <li th:each="store : ${stores}">
+    <a th:href="@{/client/order(storeId=${store.storeId})}"
+       th:text="${store.name}"></a>
+  </li>
+</ul>
+<a th:href="@{/client/home}">카테고리 다시 선택</a>
+
+</body>
+</html>

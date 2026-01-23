@@ -8,5 +8,6 @@ import java.util.List;
 public interface StoreMapper {
     void insertStore(Store store);
     List<Store> findByUserId(String userId);
-
+    List<Store> findByCategory(String category);
+    Store findById(Long storeId);
 }

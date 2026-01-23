@@ -13,6 +13,28 @@
         WHERE u_id = #{userId}
     </select>
 
+    <select id="findById"
+            resultType="com.astb.order.domain.store.Store">
+        SELECT
+        s_id AS storeId,
+        u_id AS userId,
+        s_name AS name,
+        s_cate AS category
+        FROM store_t
+        WHERE s_id = #{storeId}
+    </select>
+
+    <select id="findByCategory"
+            resultType="com.astb.order.domain.store.Store">
+        SELECT
+        s_id AS storeId,
+        u_id AS userId,
+        s_name AS name,
+        s_cate AS category
+        FROM store_t
+        WHERE s_cate = #{category}
+        ORDER BY s_name
+    </select>
 
     <insert id="insertStore">
         INSERT INTO store_t (u_id, s_name, s_cate)

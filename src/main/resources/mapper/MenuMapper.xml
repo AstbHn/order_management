@@ -7,4 +7,27 @@
         INSERT INTO menu_t (s_id, m_name, m_price)
         VALUES (#{storeId}, #{name}, #{price})
     </insert>
+
+    <select id="findById"
+            resultType="com.astb.order.domain.menu.Menu">
+        SELECT
+        m_id AS menuId,
+        s_id AS storeId,
+        m_name AS name,
+        m_price AS price
+        FROM menu_t
+        WHERE m_id = #{menuId}
+    </select>
+
+    <select id="findByStoreId"
+            resultType="com.astb.order.domain.menu.Menu">
+        SELECT
+        m_id AS menuId,
+        s_id AS storeId,
+        m_name AS name,
+        m_price AS price
+        FROM menu_t
+        WHERE s_id = #{storeId}
+        ORDER BY m_id
+    </select>
 </mapper>

@@ -7,10 +7,9 @@ import java.time.LocalDateTime;
 @Data
 public class Order {
     private Long orderId;
-    private Long menuId;
-    private String menuName;
-    private Integer menuPrice;
-    private Integer count;
-    private Long totalPrice;
+    private String userId;   // 주문한 고객
+    private Long storeId;    // 가게
+    private long totalPrice;
     private LocalDateTime orderTime;
 }
+
