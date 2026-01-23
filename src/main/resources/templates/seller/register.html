@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>음식점 주문[점주]</title>
+</head>
+<body>
+<form action="/seller/register" method="post">
+    <div>
+        <label for="name">가게 이름</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="category">카테고리</label>
+        <select id="category" name="category" required>
+            <option value="">선택</option>
+            <option value="한식">한식</option>
+            <option value="일식">일식</option>
+            <option value="중식">중식</option>
+            <option value="양식">양식</option>
+            <option value="패스트푸드">패스트푸드</option>
+            <option value="기타">기타</option>
+        </select>
+    </div>
+
+    <button type="submit">가게 등록</button>
+</form>
+
+</body>
+</html>

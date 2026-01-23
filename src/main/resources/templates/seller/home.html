@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>음식점 주문[점주]</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/seller/register}">가게 등록</a>
+    <div th:if="${hasStore}">
+        <form th:action="@{/seller/menu/register}" method="get">
+            <label>가게 선택</label>
+
+            <select name="storeId" required>
+                <option value="">선택</option>
+                <option th:each="store : ${storeList}"
+                        th:value="${store.storeId}"
+                        th:text="${store.name}">
+                </option>
+            </select>
+
+            <button type="submit">메뉴 추가</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -3,4 +3,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.astb.order.domain.store.StoreMapper">
+    <select id="findByUserId" resultType="com.astb.order.domain.store.Store">
+        SELECT
+        s_id AS storeId,
+        u_id AS userId,
+        s_name AS name,
+        s_cate AS category
+        FROM store_t
+        WHERE u_id = #{userId}
+    </select>
+
+
+    <insert id="insertStore">
+        INSERT INTO store_t (u_id, s_name, s_cate)
+        VALUES (#{userId}, #{name}, #{category})
+    </insert>
+
+
 </mapper>
