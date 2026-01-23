@@ -68,4 +68,12 @@ public class OrderService {
             orderItemMapper.insertOrderItem(item);
         }
     }
+
+    public List<Order> findByUserId(String userId) {
+        return orderMapper.findByUserId(userId);
+    }
+
+    public Order findById(Long orderId) {
+        return orderMapper.findById(orderId);
+    }
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>음식점 주문[고객]</title>
+</head>
+<body>
+<h2>주문 내역</h2>
+
+<table>
+  <tr>
+    <th>주문번호</th>
+    <th>주문시간</th>
+    <th>총 금액</th>
+  </tr>
+
+  <tr th:each="order : ${orders}">
+    <td th:text="${order.orderId}"></td>
+    <td th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
+    <td th:text="${order.totalPrice}"></td>
+    <td>
+      <a th:href="@{/client/order/{id}(id=${order.orderId})}">
+        상세보기
+      </a>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

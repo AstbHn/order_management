@@ -9,4 +9,27 @@
         INSERT INTO order_t (u_id, s_id, o_total)
         VALUES (#{userId}, #{storeId}, #{totalPrice})
     </insert>
+
+    <select id="findByUserId" resultType="com.astb.order.domain.order.Order">
+        SELECT
+        o.o_id AS orderId,
+        o.u_id AS userId,
+        o.s_id AS storeId,
+        o.o_total AS totalPrice,
+        o.o_time AS orderTime
+        FROM order_t o
+        WHERE o.u_id = #{userId}
+        ORDER BY o.o_time DESC
+    </select>
+
+    <select id="findById" resultType="com.astb.order.domain.order.Order">
+        SELECT
+        o_id AS orderId,
+        u_id AS userId,
+        s_id AS storeId,
+        o_total AS totalPrice,
+        o_time AS orderTime
+        FROM order_t
+        WHERE o_id = #{orderId}
+    </select>
 </mapper>

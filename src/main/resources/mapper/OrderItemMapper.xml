@@ -10,4 +10,18 @@
         VALUES
         (#{orderId}, #{menuId}, #{menuName}, #{menuPrice}, #{quantity}, #{totalPrice})
     </insert>
+
+    <select id="findByOrderId" resultType="com.astb.order.domain.orderitem.OrderItem">
+        SELECT
+        oi_id AS orderItemId,
+        o_id AS orderId,
+        m_id AS menuId,
+        m_name AS menuName,
+        m_price AS menuPrice,
+        oi_cnt AS quantity,
+        oi_total AS totalPrice
+        FROM order_item_t
+        WHERE o_id = #{orderId}
+    </select>
+
 </mapper>
