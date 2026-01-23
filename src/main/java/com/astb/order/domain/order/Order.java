@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 @Data
 public class Order {
-    private Integer orderId;
-    private Integer menuId;
+    private Long orderId;
+    private Long menuId;
     private String menuName;
     private Integer menuPrice;
     private Integer count;
-    private Integer totalPrice;
+    private Long totalPrice;
     private LocalDateTime orderTime;
 }

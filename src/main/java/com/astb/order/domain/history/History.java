@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class History {
-    private Integer historyId;
-    private Integer orderId;
+    private Long historyId;
+    private Long orderId;
     private String storeId;
     private String userId;
 }

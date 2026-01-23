@@ -8,4 +8,5 @@ public class Store {
     private String userId;
     private String name;
     private String category;
+
 }
