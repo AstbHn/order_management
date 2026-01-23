@@ -40,7 +40,7 @@ public class ClientController {
         model.addAttribute("category", category);
         model.addAttribute("stores", stores);
 
-        return "client/storelist";
+        return "client/storeList";
     }
 
     /* === 주문 === */
