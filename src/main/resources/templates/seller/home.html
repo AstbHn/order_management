@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>음식점 주문[점주]</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
 <div>
+    <h3>가게 등록</h3>
     <a th:href="@{/seller/register}">가게 등록</a>
     <div th:if="${hasStore}">
+        <h3>메뉴 추가</h3>
         <form th:action="@{/seller/menu/register}" method="get">
             <label>가게 선택</label>
 
