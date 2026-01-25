@@ -3,7 +3,9 @@ package com.astb.order.controller;
 import com.astb.order.domain.menu.Menu;
 import com.astb.order.domain.store.Store;
 import com.astb.order.domain.user.CustomUserDetails;
+import com.astb.order.dto.SellerSalesDTO;
 import com.astb.order.service.MenuService;
+import com.astb.order.service.SellerService;
 import com.astb.order.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,6 +25,8 @@ public class SellerController {
     //판매자 전용 컨트롤러
     private final StoreService storeService;
     private final MenuService menuService;
+    private final SellerService sellerService;
+
 
     @GetMapping("/home")
     public String home(Model model,
@@ -68,5 +72,18 @@ public class SellerController {
     public String menuRegister(Menu menu) {
         menuService.registerMenu(menu);
         return "redirect:/seller/home";
+    }
+
+    @GetMapping("/sales")
+    public String sales(@RequestParam Long storeId, Model model) {
+
+        long totalSales = sellerService.getStoreTotalSales(storeId);
+        List<SellerSalesDTO> menuSales =
+                sellerService.getMenuSalesByStore(storeId);
+
+        model.addAttribute("totalSales", totalSales);
+        model.addAttribute("menuSalesList", menuSales);
+
+        return "seller/sales";
     }
 }

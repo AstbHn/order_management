@@ -22,6 +22,23 @@
             <button type="submit">메뉴 추가</button>
         </form>
     </div>
+    <div th:if="${hasStore}">
+        <h3>판매 통계</h3>
+
+        <form th:action="@{/seller/sales}" method="get">
+            <label>가게 선택</label>
+
+            <select name="storeId" required>
+                <option value="">선택</option>
+                <option th:each="store : ${storeList}"
+                        th:value="${store.storeId}"
+                        th:text="${store.name}">
+                </option>
+            </select>
+
+            <button type="submit">판매 통계 보기</button>
+        </form>
+    </div>
 </div>
 <div>
     <a th:href="@{/auth/logout}">로그아웃</a>

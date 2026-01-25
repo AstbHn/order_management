@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>판매 통계</title>
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f4f4f4;
+    }
+    .total {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div class="total">
+  총 판매금액 :
+  <span th:text="${#numbers.formatInteger(totalSales, 0, 'COMMA')}"></span> 원
+</div>
+
+<table th:if="${menuSalesList != null}">
+  <thead>
+  <tr>
+    <th>메뉴명</th>
+    <th>판매 건수</th>
+    <th>판매 금액</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="row : ${menuSalesList}">
+    <td th:text="${row.menuName}"></td>
+    <td th:text="${row.saleCount}"></td>
+    <td th:text="${#numbers.formatInteger(row.saleAmount, 0, 'COMMA')}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<div th:if="${menuSalesList == null or #lists.isEmpty(menuSalesList)}">
+  <p>아직 주문 내역이 없습니다.</p>
+</div>
+
+<br>
+<a th:href="@{/seller/home}">← 점주 홈으로</a>
+
+</body>
+</html>
