@@ -5,6 +5,7 @@ import com.astb.order.domain.order.Order;
 import com.astb.order.domain.orderitem.OrderItem;
 import com.astb.order.domain.store.Store;
 import com.astb.order.domain.user.CustomUserDetails;
+import com.astb.order.dto.OrderListDTO;
 import com.astb.order.service.MenuService;
 import com.astb.order.service.OrderItemService;
 import com.astb.order.service.OrderService;
@@ -88,7 +89,7 @@ public class ClientController {
     public String orderList(@AuthenticationPrincipal CustomUserDetails user, Model model){
         String userId = user.getUsername();
 
-        List<Order> orders = orderService.findByUserId(userId);
+        List<OrderListDTO> orders = orderService.findByUserId(userId);
 
         model.addAttribute("orders", orders);
         return "client/orderList";

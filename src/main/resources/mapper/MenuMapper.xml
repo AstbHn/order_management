@@ -26,7 +26,7 @@
         m_name AS name,
         m_price AS price
         FROM menu_t
-        WHERE s_id = #{storeId}
+        WHERE s_id = #{storeId} AND m_active = true
         ORDER BY m_id
     </select>
 

@@ -8,14 +8,15 @@
         VALUES (#{userId}, #{storeId}, #{totalPrice})
     </insert>
 
-    <select id="findByUserId" resultType="com.astb.order.domain.order.Order">
+    <select id="findByUserId" resultType="com.astb.order.dto.OrderListDTO">
         SELECT
         o.o_id AS orderId,
         o.u_id AS userId,
         o.s_id AS storeId,
+        st.s_name as storeName,
         o.o_total AS totalPrice,
         o.o_time AS orderTime
-        FROM order_t o
+        FROM order_t o JOIN store_t st ON o.s_id=st.s_id
         WHERE o.u_id = #{userId}
         ORDER BY o.o_time DESC
     </select>

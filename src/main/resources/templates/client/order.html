@@ -9,7 +9,7 @@
 
 <h2 th:text="${store.name}"></h2>
 
-<form th:action="@{/client/order}" method="post">
+<form th:action="@{/client/order}" method="post" >
     <input type="hidden" name="storeId" th:value="${store.storeId}">
     <p th:if="${error}" th:text="${error}" style="color:red;"></p>
     <table>
@@ -27,9 +27,14 @@
                 <input type="hidden" name="menuIds" th:value="${menu.menuId}">
             </td>
         </tr>
+        <tr th:unless="${menus != null and !#lists.isEmpty(menus)}">
+            <td colspan="3">
+                메뉴가 없습니다.
+            </td>
+        </tr>
     </table>
 
-    <button type="submit">주문하기</button>
+    <button type="submit" th:if="${menus != null and !#lists.isEmpty(menus)}">주문하기</button>
 </form>
 
 <a th:href="@{/client/home}">메인으로</a>

@@ -6,6 +6,7 @@ import com.astb.order.domain.order.Order;
 import com.astb.order.domain.order.OrderMapper;
 import com.astb.order.domain.orderitem.OrderItem;
 import com.astb.order.domain.orderitem.OrderItemMapper;
+import com.astb.order.dto.OrderListDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,7 +70,7 @@ public class OrderService {
         }
     }
 
-    public List<Order> findByUserId(String userId) {
+    public List<OrderListDTO> findByUserId(String userId) {
         return orderMapper.findByUserId(userId);
     }
 
