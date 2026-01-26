@@ -21,7 +21,7 @@
 
         <tr th:each="menu : ${menus}">
             <td th:text="${menu.name}"></td>
-            <td th:text="${menu.price}"></td>
+            <td th:text="${#numbers.formatInteger(menu.price, 3, 'COMMA')}"></td>
             <td>
                 <input type="number" name="quantities" min="0" value="0">
                 <input type="hidden" name="menuIds" th:value="${menu.menuId}">
