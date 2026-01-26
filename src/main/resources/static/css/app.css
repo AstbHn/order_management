@@ -280,3 +280,53 @@ body > div{
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
+/* =========================
+   Signup Form Layout
+========================= */
+
+/* 회원가입 제목 중앙 */
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* 회원가입 form 전체 */
+form {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;   /* ⭐ 세로 정렬 */
+  gap: 16px;
+}
+
+/* 각 입력 묶음 */
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* input, select 너비 통일 */
+form input,
+form select {
+  width: 100%;
+}
+
+/* 비밀번호 메시지 */
+#pwMsg {
+  font-size: 13px;
+  color: var(--danger);
+}
+
+/* 회원가입 버튼 */
+form button {
+  margin-top: 12px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+/* 로그인 링크 중앙 */
+p {
+  text-align: center;
+  margin-top: 16px;
+}
