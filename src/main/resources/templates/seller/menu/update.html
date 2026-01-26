@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>음식점 주문[점주]</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>메뉴명</th>
+    <th>가격</th>
+    <th>관리</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr th:each="menu : ${menuList}">
+    <td colspan="3">
+      <form th:action="@{/seller/update}" method="post">
+        <input type="hidden" name="storeId" th:value="${menu.storeId}">
+        <input type="hidden" name="menuId" th:value="${menu.menuId}"/>
+
+        <input type="text" name="name" th:value="${menu.name}"
+               required/>
+
+        <input type="number" name="price" th:value="${menu.price}" required/>
+
+        <button type="submit" name="action" value="update"> 수정 </button>
+        <button type="submit" name="action" value="delete"> 삭제 </button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a th:href="@{/seller/home}">메인으로</a>
+</body>
+</html>

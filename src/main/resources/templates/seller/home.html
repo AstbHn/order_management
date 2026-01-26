@@ -38,7 +38,21 @@
                 </option>
             </select>
 
-            <button type="submit">판매 통계 보기</button>
+            <button type="submit">판매 통계</button>
+        </form>
+    </div>
+    <div th:if="${hasStore}">
+        <h3>메뉴 수정</h3>
+        <form th:action="@{/seller/update}" method="get">
+            <label>가게 선택</label>
+            <select name="storeId" required>
+                <option value="">선택</option>
+                <option th:each="store : ${storeList}"
+                        th:value="${store.storeId}"
+                        th:text="${store.name}">
+                </option>
+            </select>
+            <button type="submit">메뉴 수정</button>
         </form>
     </div>
 </div>

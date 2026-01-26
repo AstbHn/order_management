@@ -86,4 +86,32 @@ public class SellerController {
 
         return "seller/sales";
     }
+
+    /* === 메뉴 수정 == */
+    @GetMapping("/update")
+    public String update(@RequestParam Long storeId, Model model){
+        long totalSales = sellerService.getStoreTotalSales(storeId);
+        List<Menu> menuList = menuService.findByStoreId(storeId);
+        model.addAttribute("menuList", menuList);
+        return "seller/menu/update";
+    }
+    @PostMapping("/update")
+    public String updateMenu(
+            @RequestParam Long storeId,
+            @RequestParam Long menuId,
+            @RequestParam String action,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer price
+    ) {
+        if ("update".equals(action)) {
+            menuService.updateMenu(menuId, name, price);
+        }
+
+        if ("delete".equals(action)) {
+            menuService.deleteMenu(menuId);
+        }
+
+        return "redirect:/seller/update?storeId=" + storeId;
+    }
+
 }
