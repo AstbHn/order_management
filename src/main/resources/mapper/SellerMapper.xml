@@ -13,8 +13,7 @@
     </select>
 
     <!-- 메뉴별 통계 -->
-    <select id="selectMenuSalesByStore"
-            resultType="com.astb.order.dto.SellerSalesDTO">
+    <select id="selectMenuSalesByStore" resultType="com.astb.order.dto.SellerSalesDTO">
         SELECT
         oi.m_name AS menuName,
         SUM(oi.oi_cnt) AS saleCount,
