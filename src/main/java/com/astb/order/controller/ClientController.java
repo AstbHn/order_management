@@ -14,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -61,9 +62,18 @@ public class ClientController {
             @AuthenticationPrincipal CustomUserDetails user,
             @RequestParam Long storeId,
             @RequestParam List<Long> menuIds,
-            @RequestParam List<Integer> quantities
+            @RequestParam List<Integer> quantities,
+            RedirectAttributes redirectAttributes
     ) {
-        //주문
+        boolean hasOrder = quantities.stream().anyMatch(q -> q > 0);
+
+        if (!hasOrder) {
+            redirectAttributes.addFlashAttribute(
+                    "error", "수량을 선택해주세요."
+            );
+            return "redirect:/client/order?storeId=" + storeId;
+        }
+
         orderService.createOrder(
                 user.getUsername(),
                 storeId,

@@ -11,7 +11,7 @@
 
 <form th:action="@{/client/order}" method="post">
     <input type="hidden" name="storeId" th:value="${store.storeId}">
-
+    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
     <table>
         <tr>
             <th>메뉴</th>
