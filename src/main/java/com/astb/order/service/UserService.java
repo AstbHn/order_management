@@ -15,6 +15,13 @@ public class UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
+    public boolean existsByRole(String role) {
+        return userMapper.existsByRole(role);
+    }
+
+    public void signUpAdmin(User user) {
+        userMapper.insertUser(user);
+    }
     //회원가입
     public void signup(SignupDTO dto) {
 
@@ -37,5 +44,7 @@ public class UserService {
     public boolean existsByUserId(String userId) {
         return userMapper.findByUserId(userId) != null;
     }
+
+
 }
 

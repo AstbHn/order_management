@@ -6,5 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     User findByUserId(String userId);
     void insertUser(User user);
+    boolean existsByRole(String role);
 
 }
