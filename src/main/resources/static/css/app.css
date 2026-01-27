@@ -14,9 +14,7 @@
   --radius: 14px;
   --shadow: 0 8px 24px rgba(0,0,0,.08);
 
-  /* 중앙 컬럼 폭 (중요) */
   --max: 880px;
-
   --pad: 20px;
 }
 
@@ -32,11 +30,19 @@ body{
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
                Apple SD Gothic Neo, "Noto Sans KR", sans-serif;
   color: var(--text);
+  line-height: 1.6;
+
+  /* ⭐ 위쪽 여유 공간 핵심 */
+  padding-top: 48px;
+
   background:
     radial-gradient(900px 400px at 50% 0%, rgba(79,124,255,.08), transparent 60%),
     radial-gradient(900px 400px at 50% 100%, rgba(139,92,246,.06), transparent 60%),
     var(--bg);
-  line-height: 1.6;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* =========================
@@ -44,7 +50,7 @@ body{
 ========================= */
 header{
   width: 100%;
-  background: #ffffff;
+  background: #fff;
   border-bottom: 1px solid var(--line);
 }
 
@@ -53,8 +59,8 @@ header{
   margin: 0 auto;
   padding: 18px 0;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo a{
@@ -71,10 +77,10 @@ header{
 
 .nav a{
   font-size: 14px;
-  color: var(--text);
-  text-decoration: none;
   padding: 8px 12px;
   border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
 }
 
 .nav a:hover{
@@ -85,16 +91,16 @@ header{
   color: var(--danger);
 }
 
-.nav a.logout:hover{
-  background: rgba(239,68,68,.08);
+/* =========================
+   Main Content Card
+========================= */
+body > *:not(header){
+  width: 100%;
+  max-width: var(--max);
 }
 
-/* =========================
-   Main Content Blocks
-========================= */
 body > div{
-  max-width: var(--max);
-  margin: 28px auto;
+  margin: 40px auto; /* ⭐ 위 여백 강조 */
   padding: var(--pad);
   background: var(--card);
   border: 1px solid var(--line);
@@ -105,9 +111,10 @@ body > div{
 /* =========================
    Typography
 ========================= */
-h1,h2,h3,h4{
-  margin: 0 0 12px 0;
+h1,h2,h3{
+  margin: 0 0 16px 0;
   font-weight: 700;
+  text-align: center;
 }
 
 h2{ font-size: 22px; }
@@ -116,77 +123,16 @@ h3{ font-size: 18px; }
 p{
   margin: 8px 0;
   color: var(--muted);
+  text-align: center;
 }
 
 /* =========================
-   Links & Buttons
-========================= */
-a{
-  color: var(--accent);
-  text-decoration: none;
-}
-
-button{
-  cursor: pointer;
-  border: 1px solid rgba(79,124,255,.4);
-  background: linear-gradient(180deg, #5b86ff, #4f7cff);
-  color: #fff;
-  border-radius: 10px;
-  padding: 10px 16px;
-  font-weight: 600;
-}
-
-button:hover{
-  box-shadow: 0 6px 16px rgba(79,124,255,.35);
-}
-
-button:active{
-  box-shadow: none;
-}
-
-/* =========================
-   Forms
-========================= */
-form{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-label{
-  font-size: 14px;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-select,
-input[type="text"],
-input[type="number"],
-input[type="password"]{
-  min-width: 220px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: #fff;
-  font-size: 14px;
-}
-
-select:focus,
-input:focus{
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(79,124,255,.18);
-}
-
-/* =========================
-   Tables (Sales Statistics)
+   Tables
 ========================= */
 table{
   width: 100%;
   border-collapse: collapse;
-  margin-top: 16px;
-  background: #fff;
+  margin-top: 20px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -194,10 +140,9 @@ table{
 
 thead th{
   background: #f1f3f8;
-  color: var(--muted);
   font-size: 13px;
+  color: var(--muted);
   padding: 12px;
-  text-align: center;
   border-bottom: 1px solid var(--line);
 }
 
@@ -211,125 +156,97 @@ tbody tr:hover{
   background: #f6f8ff;
 }
 
-tbody tr:last-child td{
-  border-bottom: none;
+/* =========================
+   Forms
+========================= */
+form{
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+label{
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+input, select{
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font-size: 14px;
+}
+
+input:focus, select:focus{
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79,124,255,.18);
 }
 
 /* =========================
-   Utility
+   Buttons
 ========================= */
-.total{
-  font-size: 18px;
-  font-weight: 700;
-  margin-top: 10px;
+button{
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(79,124,255,.4);
+  background: linear-gradient(180deg, #5b86ff, #4f7cff);
+  color: #fff;
+  font-weight: 600;
+}
+
+button:hover{
+  box-shadow: 0 6px 16px rgba(79,124,255,.35);
+}
+
+/* =========================
+   Button-like Links
+========================= */
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 14px 0;
+  padding: 14px;
+
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(180deg, #5b86ff, #4f7cff);
+  border: 1px solid rgba(79,124,255,.4);
+
+  box-shadow: 0 4px 14px rgba(79,124,255,.25);
+  transition: all .2s ease;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(79,124,255,.35);
+}
+
+.btn.danger{
+  background: linear-gradient(180deg, #f87171, #ef4444);
+  border-color: rgba(239,68,68,.5);
 }
 
 /* =========================
    Responsive
 ========================= */
 @media (max-width: 768px){
+  body{
+    padding-top: 32px;
+  }
+
   .header-inner{
     flex-direction: column;
     gap: 12px;
   }
-
-  form{
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  select,
-  input,
-  button{
-    width: 100%;
-  }
-
-  .nav{
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-/* =========================
-   Global Center Layout
-========================= */
-
-/* body 자체를 중앙 레이아웃으로 */
-body{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* header는 전체 폭 유지 */
-header{
-  width: 100%;
-}
-
-/* header 제외한 모든 직접 자식 요소를 중앙 컬럼으로 */
-body > *:not(header){
-  width: 100%;
-  max-width: var(--max);
-}
-
-/* 본문 블록들 카드화 + 중앙 */
-body > div{
-  margin: 28px auto;
-  padding: var(--pad);
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-/* =========================
-   Signup Form Layout
-========================= */
-
-/* 회원가입 제목 중앙 */
-h2 {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-/* 회원가입 form 전체 */
-form {
-  max-width: 420px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;   /* ⭐ 세로 정렬 */
-  gap: 16px;
-}
-
-/* 각 입력 묶음 */
-form > div {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* input, select 너비 통일 */
-form input,
-form select {
-  width: 100%;
-}
-
-/* 비밀번호 메시지 */
-#pwMsg {
-  font-size: 13px;
-  color: var(--danger);
-}
-
-/* 회원가입 버튼 */
-form button {
-  margin-top: 12px;
-  padding: 12px;
-  font-size: 15px;
-}
-
-/* 로그인 링크 중앙 */
-p {
-  text-align: center;
-  margin-top: 16px;
-}
-td button {
-  white-space: nowrap;
 }
