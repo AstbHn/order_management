@@ -18,4 +18,6 @@ public interface MenuMapper {
 
     // 메뉴 삭제 (비활성화)
     int delete(@Param("menuId") Long menuId);
+
+    int active(@Param("menuId") Long menuId);
 }

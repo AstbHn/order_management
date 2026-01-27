@@ -27,14 +27,14 @@
                 <input type="hidden" name="menuIds" th:value="${menu.menuId}">
             </td>
         </tr>
-        <tr th:unless="${menus != null and !#lists.isEmpty(menus)}">
+        <tr th:if="${#lists.isEmpty(menus)}">
             <td colspan="3">
                 메뉴가 없습니다.
             </td>
         </tr>
     </table>
 
-    <button type="submit" th:if="${menus != null and !#lists.isEmpty(menus)}">주문하기</button>
+    <button type="submit" th:if="${!#lists.isEmpty(menus)}">주문하기</button>
 </form>
 
 <a th:href="@{/client/home}">메인으로</a>

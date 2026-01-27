@@ -9,4 +9,5 @@ public class Menu {
     private Long storeId;
     private String name;
     private Integer price;
+    private boolean active = true;
 }

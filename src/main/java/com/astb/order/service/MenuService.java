@@ -38,4 +38,12 @@ public class MenuService {
             throw new IllegalStateException("메뉴 삭제 실패");
         }
     }
+
+    public void activeMenu(Long menuId){
+        //메뉴 재개
+        int active = menuMapper.active(menuId);
+        if (active == 0) {
+            throw new IllegalStateException("메뉴 재개 실패");
+        }
+    }
 }

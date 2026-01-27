@@ -110,6 +110,9 @@ public class SellerController {
         if ("delete".equals(action)) {
             menuService.deleteMenu(menuId);
         }
+        if("active".equals(action)){
+            menuService.activeMenu(menuId);
+        }
 
         return "redirect:/seller/update?storeId=" + storeId;
     }

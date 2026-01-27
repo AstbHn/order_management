@@ -24,9 +24,10 @@
         m_id AS menuId,
         s_id AS storeId,
         m_name AS name,
-        m_price AS price
+        m_price AS price,
+        m_active AS active
         FROM menu_t
-        WHERE s_id = #{storeId} AND m_active = true
+        WHERE s_id = #{storeId}
         ORDER BY m_id
     </select>
 
@@ -42,4 +43,9 @@
         WHERE m_id = #{menuId}
     </update>
 
+    <update id="active">
+        UPDATE menu_t
+        SET m_active = true
+        WHERE m_id = #{menuId}
+    </update>
 </mapper>

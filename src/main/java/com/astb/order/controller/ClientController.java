@@ -51,6 +51,7 @@ public class ClientController {
         //가게 아이디를 사용한 가게 및 메뉴 조회
         Store store = storeService.findById(storeId);
         List<Menu> menus = menuService.findByStoreId(storeId);
+        menus = menus.stream().filter(Menu::isActive).toList();
 
         model.addAttribute("store", store);
         model.addAttribute("menus", menus);
