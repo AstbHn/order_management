@@ -7,6 +7,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -34,6 +36,9 @@ public class UserService {
         userMapper.insertUser(user);
     }
 
+    public List<User> selectUsers(){
+        return userMapper.selectUsers();
+    }
     @Transactional(readOnly = true)
     public User findByUserId(String userId) {
         return userMapper.findByUserId(userId);
