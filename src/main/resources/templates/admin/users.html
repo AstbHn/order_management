@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>음식점 주문[관리자 - 회원 관리]</title>
+  <title>음식점 주문[관리자]</title>
   <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
@@ -19,25 +19,30 @@
   </thead>
 
   <tbody>
-  <tr th:each="user : ${userList}">
+  <tr th:if="${#lists.isEmpty(userList)}">
+    <td colspan="5">등록된 회원이 없습니다.</td>
+  </tr>
+  <tr th:each="user : ${userList}" th:unless="${#lists.isEmpty(userList)}">
     <form th:action="@{/admin/enable}" method="post">
 
-      <td><input type="text" name="userId" th:value="${user.userId}" readonly></td>
+      <td>
+        <input type="text" name="userId"
+               th:value="${user.userId}" readonly>
+      </td>
       <td th:text="${user.role}"></td>
       <td th:text="${user.address}"></td>
       <td th:text="${user.enabled ? '활성' : '비활성'}"></td>
 
       <td>
-        <button type="submit" th:if="${user.enabled}" name="enabled" value="false">
-          비활성화
-        </button>
-        <button type="submit" th:if="${!user.enabled}" name="enabled" value="true">
-          활성화
-        </button>
+        <button type="submit" th:if="${user.enabled}" name="enabled" value="false">비활성화</button>
+        <button type="submit" th:if="${!user.enabled}" name="enabled" value="true">활성화</button>
       </td>
+
     </form>
   </tr>
+
   </tbody>
+
 </table>
 
 <a th:href="@{/admin/home}">관리자 홈</a>
