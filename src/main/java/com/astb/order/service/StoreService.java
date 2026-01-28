@@ -2,6 +2,7 @@ package com.astb.order.service;
 
 import com.astb.order.domain.store.Store;
 import com.astb.order.domain.store.StoreMapper;
+import com.astb.order.dto.AdminStoreDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,8 @@ public class StoreService {
         return storeMapper.findById(storeId);
     }
 
+    public List<AdminStoreDTO> allStoreSales() {
+        return storeMapper.allStoreSales();
+    }
 }
 

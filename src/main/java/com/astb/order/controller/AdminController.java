@@ -1,8 +1,12 @@
 package com.astb.order.controller;
 
+import com.astb.order.domain.menu.Menu;
+import com.astb.order.domain.order.Order;
+import com.astb.order.domain.store.Store;
 import com.astb.order.domain.user.User;
-import com.astb.order.service.AdminService;
-import com.astb.order.service.UserService;
+import com.astb.order.dto.AdminStoreDTO;
+import com.astb.order.dto.OrderListDTO;
+import com.astb.order.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
@@ -20,6 +24,9 @@ import java.util.List;
 public class AdminController {
     private final UserService userService;
     private final AdminService adminService;
+    private final StoreService storeService;
+    private final MenuService menuService;
+
     //관리자 전용 컨트롤러
     @GetMapping("/home")
     public String home(){
@@ -36,21 +43,26 @@ public class AdminController {
     }
 
     @GetMapping("/stores")
-    public String stores(){
-        //가게정보 가져오기
-        return "admin/stores";
+    public String storeList(Model model) {
+        List<AdminStoreDTO> storeList = storeService.allStoreSales();
+        model.addAttribute("storeList", storeList);
+        return "admin/storeList";
     }
 
-    @GetMapping("/stores/menu")
-    public String menu(){
-        //가게 아이디 이용하여 해당 메뉴 가져오기 수정 X 활성 비활성만 가능
-        return "admin/stores/menu";
+    @GetMapping("/menus")
+    public String menus(@RequestParam Long storeId, Model model) {
+        // 해당 가게 메뉴 조회
+        List<Menu> menuList = menuService.findByStoreId(storeId);
+        model.addAttribute("menuList", menuList);
+        return "admin/menus";
     }
-
-    @GetMapping("/order")
-    public String order(){
-        //전체 주문 내역 가져오기
-        return "admin/orderList";
+    @PostMapping("/update")
+    public String updateMenu(
+            @RequestParam Long storeId,
+            @RequestParam Long menuId
+    ) {
+        menuService.deleteMenu(menuId);
+        return "redirect:/admin/menus?storeId=" + storeId;
     }
 
     @PostMapping("/enable")

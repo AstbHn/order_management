@@ -34,6 +34,19 @@
         ORDER BY s_name
     </select>
 
+    <select id="allStoreSales" resultType="com.astb.order.dto.AdminStoreDTO">
+        SELECT
+        s.s_id AS storeId,
+        s.s_name AS name,
+        s.s_cate AS category,
+        s.u_id AS userId,
+        IFNULL(SUM(o.o_total), 0) AS totalSales
+        FROM store_t s
+        LEFT JOIN order_t o ON s.s_id = o.s_id
+        GROUP BY s.s_id, s.s_name, s.s_cate, s.u_id
+        ORDER BY totalSales DESC
+    </select>
+
     <insert id="insertStore">
         INSERT INTO store_t (u_id, s_name, s_cate)
         VALUES (#{userId}, #{name}, #{category})
