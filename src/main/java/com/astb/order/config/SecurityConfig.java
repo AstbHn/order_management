@@ -31,12 +31,10 @@ public class SecurityConfig {
                 // 로그인 설정
                 .formLogin(login -> login
                         .loginPage("/auth/login")          // GET 로그인 페이지
-                        .loginProcessingUrl("/auth/login") // POST 로그인 처리
+                        .loginProcessingUrl("/auth/loginProc") // POST 로그인 처리
                         .successHandler((request, response, authentication) -> {
-                            // 로그인 데이터의 ROLE 가져오기
                             var roles = authentication.getAuthorities().toString();
 
-                            // 각 ROLE에 따른 화면 분기
                             if (roles.contains("ROLE_ADMIN")) {
                                 response.sendRedirect("/admin/home");
                             } else if (roles.contains("ROLE_SELLER")) {
@@ -45,9 +43,16 @@ public class SecurityConfig {
                                 response.sendRedirect("/client/home");
                             }
                         })
-                        .failureUrl("/auth/login?error=true")
+                        .failureHandler((request, response, exception) -> {
+                            if (exception instanceof org.springframework.security.authentication.DisabledException) {
+                                response.sendRedirect("/auth/login?error=disabled");
+                            } else {
+                                response.sendRedirect("/auth/login?error=true");
+                            }
+                        })
                         .permitAll()
                 )
+
 
                 // 로그아웃 설정
                 .logout(logout -> logout

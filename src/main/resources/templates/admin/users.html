@@ -13,14 +13,29 @@
     <th>아이디</th>
     <th>권한</th>
     <th>주소</th>
+    <th>상태</th>
+    <th>관리</th>
   </tr>
   </thead>
 
   <tbody>
   <tr th:each="user : ${userList}">
-    <td th:text="${user.userId}"></td>
-    <td th:text="${user.role}"></td>
-    <td th:text="${user.address}"></td>
+    <form th:action="@{/admin/enable}" method="post">
+
+      <td><input type="text" name="userId" th:value="${user.userId}" readonly></td>
+      <td th:text="${user.role}"></td>
+      <td th:text="${user.address}"></td>
+      <td th:text="${user.enabled ? '활성' : '비활성'}"></td>
+
+      <td>
+        <button type="submit" th:if="${user.enabled}" name="enabled" value="false">
+          비활성화
+        </button>
+        <button type="submit" th:if="${!user.enabled}" name="enabled" value="true">
+          활성화
+        </button>
+      </td>
+    </form>
   </tr>
   </tbody>
 </table>

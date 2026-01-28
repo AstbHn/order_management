@@ -13,26 +13,37 @@
     <!-- 사용자 조회 -->
     <select id="findByUserId" parameterType="string" resultType="User">
         SELECT
-        u_id   AS userId,
-        u_pwd  AS password,
+        u_id AS userId,
+        u_pwd AS password,
         u_role AS role,
-        u_addr AS address <!--도메인 명과 맞추기-->
+        u_addr AS address,
+        enabled AS enabled
         FROM user_t
         WHERE u_id = #{userId}
     </select>
 
+
     <!--회원 정보 전체 조회-->
     <select id="selectUsers" resultType="com.astb.order.domain.user.User">
         SELECT
-        u_id   AS userId,
+        u_id AS userId,
         u_role AS role,
-        u_addr AS address
+        u_addr AS address,
+        enabled AS enabled
         FROM user_t
     </select>
+
 
     <!-- 회원가입 -->
     <insert id="insertUser" parameterType="User">
         INSERT INTO user_t ( u_id, u_pwd, u_role, u_addr )
         VALUES ( #{userId}, #{password}, #{role}, #{address} )
     </insert>
+
+    <update id="updateEnabled">
+        UPDATE user_t
+        SET enabled = #{enabled}
+        WHERE u_id = #{userId}
+    </update>
+
 </mapper>

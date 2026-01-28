@@ -57,11 +57,12 @@ public class CustomUserDetails implements UserDetails {
     // 계정 활성화 여부
     @Override
     public boolean isEnabled() {
-        return true;
+        return user.isEnabled();
     }
 
     // 도메인 User 객체 접근용 메서드
     public User getUser() {
         return user;
     }
+
 }

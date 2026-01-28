@@ -1,6 +1,7 @@
 package com.astb.order.domain.user;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,4 +11,8 @@ public interface UserMapper {
     void insertUser(User user);
     boolean existsByRole(String role);
     List<User> selectUsers();
+    void updateEnabled(
+            @Param("userId") String userId,
+            @Param("enabled") boolean enabled
+    );
 }

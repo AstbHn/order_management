@@ -1,12 +1,16 @@
 package com.astb.order.controller;
 
 import com.astb.order.domain.user.User;
+import com.astb.order.service.AdminService;
 import com.astb.order.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,6 +19,7 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
+    private final AdminService adminService;
     //관리자 전용 컨트롤러
     @GetMapping("/home")
     public String home(){
@@ -46,5 +51,14 @@ public class AdminController {
     public String order(){
         //전체 주문 내역 가져오기
         return "admin/orderList";
+    }
+
+    @PostMapping("/enable")
+    public String updateUserEnabled(
+            @RequestParam String userId,
+            @RequestParam boolean enabled
+    ) {
+        adminService.updateUserEnabled(userId, enabled);
+        return "redirect:/admin/users";
     }
 }

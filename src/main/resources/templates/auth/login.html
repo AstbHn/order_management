@@ -8,12 +8,12 @@
 <body>
 
 <h2>로그인</h2>
-<!-- 로그인 실패 메시지 -->
-<div th:if="${param.error}">
-    <p style="color:red;">아이디 또는 비밀번호가 다릅니다.</p>
-</div>
+<p th:if="${errorMsg}"
+   th:text="${errorMsg}"
+   style="color:red; text-align:center;">
+</p>
 
-<form th:action="@{/auth/login}" method="post">
+<form th:action="@{/auth/loginProc}" method="post">
     <div>
         <label for="userid">아이디</label>
         <input type="text" id="userid" name="username" required>
