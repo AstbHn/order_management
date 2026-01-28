@@ -77,4 +77,8 @@ public class OrderService {
     public Order findById(Long orderId) {
         return orderMapper.findById(orderId);
     }
+
+    public List<OrderListDTO> findOrdersByStoreId(Long storeId) {
+        return orderMapper.findByStoreId(storeId);
+    }
 }

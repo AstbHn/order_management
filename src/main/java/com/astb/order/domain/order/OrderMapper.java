@@ -10,4 +10,5 @@ public interface OrderMapper {
     void insertOrder(Order order);
     List<OrderListDTO> findByUserId(String userId);
     Order findById(Long orderId);
+    List<OrderListDTO> findByStoreId(Long storeId);
 }

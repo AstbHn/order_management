@@ -1,20 +1,19 @@
 package com.astb.order.controller;
 
 import com.astb.order.domain.menu.Menu;
+import com.astb.order.domain.order.Order;
+import com.astb.order.domain.orderitem.OrderItem;
+import com.astb.order.domain.orderitem.OrderItemMapper;
 import com.astb.order.domain.store.Store;
 import com.astb.order.domain.user.CustomUserDetails;
+import com.astb.order.dto.OrderListDTO;
 import com.astb.order.dto.SellerSalesDTO;
-import com.astb.order.service.MenuService;
-import com.astb.order.service.SellerService;
-import com.astb.order.service.StoreService;
+import com.astb.order.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -26,7 +25,8 @@ public class SellerController {
     private final StoreService storeService;
     private final MenuService menuService;
     private final SellerService sellerService;
-
+    private final OrderService orderService;
+    private final OrderItemService orderItemService;
 
     @GetMapping("/home")
     public String home(Model model,
@@ -76,15 +76,29 @@ public class SellerController {
 
     @GetMapping("/sales")
     public String sales(@RequestParam Long storeId, Model model) {
-
         long totalSales = sellerService.getStoreTotalSales(storeId);
-        List<SellerSalesDTO> menuSales =
-                sellerService.getMenuSalesByStore(storeId);
+        List<SellerSalesDTO> menuSales = sellerService.getMenuSalesByStore(storeId);
 
+        List<OrderListDTO> orders = orderService.findOrdersByStoreId(storeId);
+
+        model.addAttribute("orders", orders);
         model.addAttribute("totalSales", totalSales);
         model.addAttribute("menuSalesList", menuSales);
 
         return "seller/sales";
+    }
+    @GetMapping("/order/{orderId}")
+    public String orderDetail(@PathVariable Long orderId,
+                              Model model) {
+
+        Order order = orderService.findById(orderId);
+        List<OrderItem> items = orderItemService.findByOrderId(orderId);
+
+        model.addAttribute("order", order);
+        model.addAttribute("items", items);
+        model.addAttribute("storeId", order.getStoreId());
+
+        return "seller/orderDetail";
     }
 
     /* === 메뉴 수정 == */

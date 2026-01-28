@@ -22,4 +22,5 @@ public class SellerService {
     public List<SellerSalesDTO> getMenuSalesByStore(Long storeId) {
         return sellerMapper.selectMenuSalesByStore(storeId);
     }
+
 }

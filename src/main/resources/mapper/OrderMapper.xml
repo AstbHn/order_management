@@ -31,4 +31,18 @@
         FROM order_t
         WHERE o_id = #{orderId}
     </select>
+
+    <select id="findByStoreId" parameterType="long" resultType="com.astb.order.dto.OrderListDTO">
+        SELECT
+        o.o_id AS orderId,
+        o.u_id AS userId,
+        o.s_id AS storeId,
+        s.s_name AS storeName,
+        o.o_total AS totalPrice,
+        o.o_time AS orderTime
+        FROM order_t o
+        JOIN store_t s ON o.s_id = s.s_id
+        WHERE o.s_id = #{storeId}
+        ORDER BY o.o_time DESC
+    </select>
 </mapper>

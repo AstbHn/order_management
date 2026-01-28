@@ -32,7 +32,30 @@
   <p>아직 주문 내역이 없습니다.</p>
 </div>
 
-<br>
+<table>
+  <tr>
+    <th>주문번호</th>
+    <th>가게</th>
+    <th>주문시간</th>
+    <th>총 금액</th>
+  </tr>
+
+  <tr th:if="${orders == null or #lists.isEmpty(orders)}">
+    <td colspan="5">아직 주문 내역이 없습니다.</td>
+  </tr>
+
+  <tr th:each="order : ${orders}">
+    <td th:text="${order.orderId}"></td>
+    <td th:text="${order.storeName}"></td>
+    <td th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
+    <td th:text="${#numbers.formatInteger(order.totalPrice, 3, 'COMMA')}"></td>
+    <td>
+      <a th:href="@{/seller/order/{id}(id=${order.orderId})}" class="btn">
+        상세보기
+      </a>
+    </td>
+  </tr>
+</table>
 <a th:href="@{/seller/home}">메인으로</a>
 
 </body>
