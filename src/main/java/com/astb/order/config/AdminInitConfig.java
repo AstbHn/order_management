@@ -20,7 +20,7 @@ public class AdminInitConfig implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        if (userService.existsByRole("ADMIN")) {
+        if (userService.existsByRole("ROLE_ADMIN")) {
             return;
         }
 
@@ -30,7 +30,7 @@ public class AdminInitConfig implements ApplicationRunner {
         User admin = new User();
         admin.setUserId("admin");
         admin.setPassword(encodedPassword);
-        admin.setRole("ADMIN");
+        admin.setRole("ROLE_ADMIN");
 
         userService.signUpAdmin(admin);
 
