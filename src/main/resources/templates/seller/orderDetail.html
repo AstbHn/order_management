@@ -2,31 +2,36 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>음식점 주문[고객]</title>
+  <title>음식점 주문[점주]</title>
   <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<p>주문번호: <span th:text="${order.orderId}"></span></p>
-<p>주문시간: <span th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></span></p>
-<p>총 금액: <span th:text="${order.totalPrice}"></span></p>
+<div id="page-wrap">
+  <h2>주문 상세</h2>
+  <div id="order-info">
+    <p>주문번호: <span th:text="${order.orderId}"></span></p>
+    <p>주문시간: <span th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+    <p>총 금액: <span th:text="${order.totalPrice}"></span></p>
+  </div>
 
-<h3>메뉴 목록</h3>
-<table>
-  <tr>
-    <th>메뉴명</th>
-    <th>가격</th>
-    <th>수량</th>
-    <th>합계</th>
-  </tr>
+  <h3>메뉴 목록</h3>
+  <table>
+    <tr>
+      <th>메뉴명</th>
+      <th>가격</th>
+      <th>수량</th>
+      <th>합계</th>
+    </tr>
 
-  <tr th:each="item : ${items}">
-    <td th:text="${item.menuName}"></td>
-    <td th:text="${item.menuPrice}"></td>
-    <td th:text="${item.quantity}"></td>
-    <td th:text="${item.totalPrice}"></td>
-  </tr>
-</table>
-<a th:href="@{/seller/sales(storeId=${storeId})}">주문 목록</a>
-<a th:href="@{/seller/home}">메인으로</a>
+    <tr th:each="item : ${items}">
+      <td th:text="${item.menuName}"></td>
+      <td th:text="${item.menuPrice}"></td>
+      <td th:text="${item.quantity}"></td>
+      <td th:text="${item.totalPrice}"></td>
+    </tr>
+  </table>
+  <a th:href="@{/seller/sales(storeId=${storeId})}">주문 목록</a>
+  <a th:href="@{/seller/home}">메인으로</a>
+</div>
 </body>
 </html>

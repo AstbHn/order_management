@@ -6,12 +6,15 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-    <!-- 회원 관리 회원들 리스트-->
-    <a th:href="@{/admin/users}" class="btn">회원 관리</a>
-    <!-- 가게 관리 -->
-    <a th:href="@{/admin/stores}" class="btn">가게 관리</a>
-        <!-- └ 메뉴 관리 -->
-
-    <a th:href="@{/auth/logout}">로그아웃</a>
+<div id="page-wrap">
+    <h2>관리자 홈</h2>
+    <div class="btn-area">
+        <a th:href="@{/admin/users}" class="btn">회원 관리</a>
+        <a th:href="@{/admin/stores}" class="btn">가게 관리</a>
+    </div>
+    <div id="logout-wrap">
+        <a th:href="@{/auth/logout}">로그아웃</a>
+    </div>
+</div>
 </body>
 </html>

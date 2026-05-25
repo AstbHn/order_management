@@ -6,23 +6,22 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<h2>카테고리 선택</h2>
+<div id="page-wrap">
+    <h2>카테고리 선택</h2>
 
-<div>
-    <a th:href="@{/client/stores(category='한식')}">한식</a>
-    <a th:href="@{/client/stores(category='일식')}">일식</a>
-    <a th:href="@{/client/stores(category='중식')}">중식</a>
-    <a th:href="@{/client/stores(category='양식')}">양식</a>
-    <a th:href="@{/client/stores(category='패스트푸드')}">패스트푸드</a>
-    <a th:href="@{/client/stores(category='기타')}">기타</a>
-</div>
+    <div id="category-grid">
+        <a th:href="@{/client/stores(category='한식')}">한식</a>
+        <a th:href="@{/client/stores(category='일식')}">일식</a>
+        <a th:href="@{/client/stores(category='중식')}">중식</a>
+        <a th:href="@{/client/stores(category='양식')}">양식</a>
+        <a th:href="@{/client/stores(category='패스트푸드')}">패스트푸드</a>
+        <a th:href="@{/client/stores(category='기타')}">기타</a>
+    </div>
 
-<div>
-    <a th:href ="@{/client/orderList}">주문조회</a>
-</div>
-
-<div>
-    <a th:href="@{/auth/logout}">로그아웃</a>
+    <div id="bottom-links">
+        <a th:href ="@{/client/orderList}">주문조회</a>
+        <a th:href="@{/auth/logout}">로그아웃</a>
+    </div>
 </div>
 </body>
 </html>

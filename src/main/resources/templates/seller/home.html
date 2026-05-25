@@ -6,58 +6,59 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<div>
-    <h3>가게 등록</h3>
-    <a th:href="@{/seller/register}">가게 등록</a>
-    <div th:if="${hasStore}">
-        <h3>메뉴 추가</h3>
-        <form th:action="@{/seller/menu/register}" method="get">
-            <label>가게 선택</label>
-
-            <select name="storeId" required>
-                <option value="">선택</option>
-                <option th:each="store : ${storeList}"
-                        th:value="${store.storeId}"
-                        th:text="${store.name}">
-                </option>
-            </select>
-
-            <button type="submit">메뉴 추가</button>
-        </form>
+<div id="page-wrap">
+    <h2>점주 홈</h2>
+    <div id="seller-sections">
+        <div class="seller-section">
+            <h3>가게 등록</h3>
+            <a th:href="@{/seller/register}" class="btn">가게 등록</a>
+        </div>
+        <div th:if="${hasStore}" class="seller-section">
+            <h3>메뉴 추가</h3>
+            <form th:action="@{/seller/menu/register}" method="get">
+                <label>가게 선택</label>
+                <select name="storeId" required>
+                    <option value="">선택</option>
+                    <option th:each="store : ${storeList}"
+                            th:value="${store.storeId}"
+                            th:text="${store.name}">
+                    </option>
+                </select>
+                <button type="submit">메뉴 추가</button>
+            </form>
+        </div>
+        <div th:if="${hasStore}" class="seller-section">
+            <h3>판매 통계</h3>
+            <form th:action="@{/seller/sales}" method="get">
+                <label>가게 선택</label>
+                <select name="storeId" required>
+                    <option value="">선택</option>
+                    <option th:each="store : ${storeList}"
+                            th:value="${store.storeId}"
+                            th:text="${store.name}">
+                    </option>
+                </select>
+                <button type="submit">판매 통계</button>
+            </form>
+        </div>
+        <div th:if="${hasStore}" class="seller-section">
+            <h3>메뉴 수정</h3>
+            <form th:action="@{/seller/update}" method="get">
+                <label>가게 선택</label>
+                <select name="storeId" required>
+                    <option value="">선택</option>
+                    <option th:each="store : ${storeList}"
+                            th:value="${store.storeId}"
+                            th:text="${store.name}">
+                    </option>
+                </select>
+                <button type="submit">메뉴 수정</button>
+            </form>
+        </div>
     </div>
-    <div th:if="${hasStore}">
-        <h3>판매 통계</h3>
-        <form th:action="@{/seller/sales}" method="get">
-            <label>가게 선택</label>
-
-            <select name="storeId" required>
-                <option value="">선택</option>
-                <option th:each="store : ${storeList}"
-                        th:value="${store.storeId}"
-                        th:text="${store.name}">
-                </option>
-            </select>
-
-            <button type="submit">판매 통계</button>
-        </form>
+    <div id="logout-wrap">
+        <a th:href="@{/auth/logout}">로그아웃</a>
     </div>
-    <div th:if="${hasStore}">
-        <h3>메뉴 수정</h3>
-        <form th:action="@{/seller/update}" method="get">
-            <label>가게 선택</label>
-            <select name="storeId" required>
-                <option value="">선택</option>
-                <option th:each="store : ${storeList}"
-                        th:value="${store.storeId}"
-                        th:text="${store.name}">
-                </option>
-            </select>
-            <button type="submit">메뉴 수정</button>
-        </form>
-    </div>
-</div>
-<div>
-    <a th:href="@{/auth/logout}">로그아웃</a>
 </div>
 </body>
 </html>

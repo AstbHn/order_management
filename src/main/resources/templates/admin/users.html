@@ -6,46 +6,48 @@
   <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<h2>회원 관리</h2>
-<table>
-  <thead>
-  <tr>
-    <th>아이디</th>
-    <th>권한</th>
-    <th>주소</th>
-    <th>상태</th>
-    <th>관리</th>
-  </tr>
-  </thead>
+<div id="page-wrap">
+  <h2>회원 관리</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>아이디</th>
+      <th>권한</th>
+      <th>주소</th>
+      <th>상태</th>
+      <th>관리</th>
+    </tr>
+    </thead>
 
-  <tbody>
-  <tr th:if="${#lists.isEmpty(userList)}">
-    <td colspan="5">등록된 회원이 없습니다.</td>
-  </tr>
-  <tr th:each="user : ${userList}" th:unless="${#lists.isEmpty(userList)}">
-    <form th:action="@{/admin/enable}" method="post">
+    <tbody>
+    <tr th:if="${#lists.isEmpty(userList)}">
+      <td colspan="5">등록된 회원이 없습니다.</td>
+    </tr>
+    <tr th:each="user : ${userList}" th:unless="${#lists.isEmpty(userList)}">
+      <form th:action="@{/admin/enable}" method="post">
 
-      <td>
-        <input type="text" name="userId"
-               th:value="${user.userId}" readonly>
-      </td>
-      <td th:text="${user.role}"></td>
-      <td th:text="${user.address}"></td>
-      <td th:text="${user.enabled ? '활성' : '비활성'}"></td>
+        <td>
+          <input type="text" name="userId"
+                 th:value="${user.userId}" readonly>
+        </td>
+        <td th:text="${user.role}"></td>
+        <td th:text="${user.address}"></td>
+        <td th:text="${user.enabled ? '활성' : '비활성'}"></td>
 
-      <td>
-        <button type="submit" th:if="${user.enabled}" name="enabled" value="false">비활성화</button>
-        <button type="submit" th:if="${!user.enabled}" name="enabled" value="true">활성화</button>
-      </td>
+        <td>
+          <button type="submit" th:if="${user.enabled}" name="enabled" value="false">비활성화</button>
+          <button type="submit" th:if="${!user.enabled}" name="enabled" value="true">활성화</button>
+        </td>
 
-    </form>
-  </tr>
+      </form>
+    </tr>
 
-  </tbody>
+    </tbody>
 
-</table>
+  </table>
 
-<a th:href="@{/admin/home}">관리자 홈</a>
+  <a th:href="@{/admin/home}">관리자 홈</a>
+</div>
 
 </body>
 </html>

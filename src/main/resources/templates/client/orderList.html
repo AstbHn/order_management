@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <title>음식점 주문[고객]</title>
   <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<h2>주문 내역</h2>
+<div id="page-wrap">
+  <h2>주문 내역</h2>
 
-<table>
-  <tr>
-    <th>주문번호</th>
-    <th>가게</th>
-    <th>주문시간</th>
-    <th>총 금액</th>
-  </tr>
+  <table>
+    <tr>
+      <th>주문번호</th>
+      <th>가게</th>
+      <th>주문시간</th>
+      <th>총 금액</th>
+    </tr>
 
-  <tr th:each="order : ${orders}">
-    <td th:text="${order.orderId}"></td>
-    <td th:text="${order.storeName}"></td>
-    <td th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
-    <td th:text="${#numbers.formatInteger(order.totalPrice, 3, 'COMMA')}"></td>
-    <td>
-      <a th:href="@{/client/order/{id}(id=${order.orderId})}">
-        상세보기
-      </a>
-    </td>
-  </tr>
-</table>
-<a th:href="@{/client/home}">메인으로</a>
+    <tr th:each="order : ${orders}">
+      <td th:text="${order.orderId}"></td>
+      <td th:text="${order.storeName}"></td>
+      <td th:text="${#temporals.format(order.orderTime, 'yyyy-MM-dd HH:mm')}"></td>
+      <td th:text="${#numbers.formatInteger(order.totalPrice, 3, 'COMMA')}"></td>
+      <td>
+        <a th:href="@{/client/order/{id}(id=${order.orderId})}">
+          상세보기
+        </a>
+      </td>
+    </tr>
+  </table>
+  <a th:href="@{/client/home}">메인으로</a>
+</div>
 </body>
 </html>

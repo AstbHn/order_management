@@ -6,44 +6,46 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
+<div id="page-wrap">
 
-<h2>가게 목록</h2>
+    <h2>가게 목록</h2>
 
-<table>
-    <thead>
-    <tr>
-        <th>가게 ID</th>
-        <th>가게명</th>
-        <th>카테고리</th>
-        <th>점주 ID</th>
-        <th>총 매출액</th>
-        <th>메뉴 관리</th>
-    </tr>
-    </thead>
+    <table>
+        <thead>
+        <tr>
+            <th>가게 ID</th>
+            <th>가게명</th>
+            <th>카테고리</th>
+            <th>점주 ID</th>
+            <th>총 매출액</th>
+            <th>메뉴 관리</th>
+        </tr>
+        </thead>
 
-    <tbody>
-    <tr th:if="${#lists.isEmpty(storeList)}">
-        <td colspan="6">등록된 가게가 없습니다.</td>
-    </tr>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(storeList)}">
+            <td colspan="6">등록된 가게가 없습니다.</td>
+        </tr>
 
-    <tr th:each="store : ${storeList}">
-        <td th:text="${store.storeId}"></td>
-        <td th:text="${store.name}"></td>
-        <td th:text="${store.category}"></td>
-        <td th:text="${store.userId}"></td>
-        <td>
-            <span th:text="${#numbers.formatInteger(store.totalSales, 3, 'COMMA')}"></span>
-        </td>
-        <td>
-            <a th:href="@{/admin/menus(storeId=${store.storeId})}" class="btn">
-                메뉴 관리
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <tr th:each="store : ${storeList}">
+            <td th:text="${store.storeId}"></td>
+            <td th:text="${store.name}"></td>
+            <td th:text="${store.category}"></td>
+            <td th:text="${store.userId}"></td>
+            <td>
+                <span th:text="${#numbers.formatInteger(store.totalSales, 3, 'COMMA')}"></span>
+            </td>
+            <td>
+                <a th:href="@{/admin/menus(storeId=${store.storeId})}" class="btn">
+                    메뉴 관리
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<a th:href="@{/admin/home}">관리자 홈</a>
+    <a th:href="@{/admin/home}">관리자 홈</a>
+</div>
 
 </body>
 </html>

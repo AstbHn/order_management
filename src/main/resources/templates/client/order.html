@@ -6,38 +6,40 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
+<div id="page-wrap">
 
-<h2 th:text="${store.name}"></h2>
+    <h2 th:text="${store.name}"></h2>
 
-<form th:action="@{/client/order}" method="post" >
-    <input type="hidden" name="storeId" th:value="${store.storeId}">
-    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
-    <table>
-        <tr>
-            <th>메뉴</th>
-            <th>가격</th>
-            <th>수량</th>
-        </tr>
+    <form th:action="@{/client/order}" method="post" >
+        <input type="hidden" name="storeId" th:value="${store.storeId}">
+        <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+        <table>
+            <tr>
+                <th>메뉴</th>
+                <th>가격</th>
+                <th>수량</th>
+            </tr>
 
-        <tr th:each="menu : ${menus}">
-            <td th:text="${menu.name}"></td>
-            <td th:text="${#numbers.formatInteger(menu.price, 3, 'COMMA')}"></td>
-            <td>
-                <input type="number" name="quantities" min="0" value="0">
-                <input type="hidden" name="menuIds" th:value="${menu.menuId}">
-            </td>
-        </tr>
-        <tr th:if="${#lists.isEmpty(menus)}">
-            <td colspan="3">
-                메뉴가 없습니다.
-            </td>
-        </tr>
-    </table>
+            <tr th:each="menu : ${menus}">
+                <td th:text="${menu.name}"></td>
+                <td th:text="${#numbers.formatInteger(menu.price, 3, 'COMMA')}"></td>
+                <td>
+                    <input type="number" name="quantities" min="0" value="0">
+                    <input type="hidden" name="menuIds" th:value="${menu.menuId}">
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(menus)}">
+                <td colspan="3">
+                    메뉴가 없습니다.
+                </td>
+            </tr>
+        </table>
 
-    <button type="submit" th:if="${!#lists.isEmpty(menus)}">주문하기</button>
-</form>
+        <button type="submit" th:if="${!#lists.isEmpty(menus)}">주문하기</button>
+    </form>
 
-<a th:href="@{/client/home}">메인으로</a>
+    <a th:href="@{/client/home}">메인으로</a>
+</div>
 
 </body>
 </html>

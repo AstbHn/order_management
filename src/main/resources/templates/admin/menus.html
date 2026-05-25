@@ -6,32 +6,35 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>번호</th>
-        <th>메뉴명</th>
-        <th>가격</th>
-        <th colspan="2">관리</th>
-    </tr>
-    </thead>
+<div id="page-wrap">
+    <h2>메뉴 관리</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>메뉴명</th>
+            <th>가격</th>
+            <th colspan="2">관리</th>
+        </tr>
+        </thead>
 
-    <tbody>
-    <tr th:each="menu : ${menuList}">
-        <form th:action="@{/admin/update}" method="post">
-            <input type="hidden" name="storeId" th:value="${menu.storeId}">
-            <input type="hidden" name="menuId" th:value="${menu.menuId}" readonly/>
-            <td><p th:text="${menu.menuId}"></p></td>
-            <td><p th:text="${menu.name}"></p></td>
-            <td><p th:text="${menu.price}"></p></td>
-            <td>
-                <button type="submit" name="action"th:if="${menu.active}"> 삭제 </button>
-                <p th:unless="${menu.active}" th:text="판매중지"></p>
-            </td>
-        </form>
-    </tr>
-    </tbody>
-</table>
-<a th:href="@{/admin/home}">메인으로</a>
+        <tbody>
+        <tr th:each="menu : ${menuList}">
+            <form th:action="@{/admin/update}" method="post">
+                <input type="hidden" name="storeId" th:value="${menu.storeId}">
+                <input type="hidden" name="menuId" th:value="${menu.menuId}" readonly/>
+                <td><p th:text="${menu.menuId}"></p></td>
+                <td><p th:text="${menu.name}"></p></td>
+                <td><p th:text="${menu.price}"></p></td>
+                <td>
+                    <button type="submit" name="action"th:if="${menu.active}"> 삭제 </button>
+                    <p th:unless="${menu.active}" th:text="판매중지"></p>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/home}">메인으로</a>
+</div>
 </body>
 </html>

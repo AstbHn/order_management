@@ -6,21 +6,24 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body>
-<form th:action="@{/seller/menu/register}" method="post">
-    <input type="hidden" name="storeId" th:value="${storeId}">
+<div id="page-wrap" class="form-page">
+    <h2>메뉴 등록</h2>
+    <form th:action="@{/seller/menu/register}" method="post">
+        <input type="hidden" name="storeId" th:value="${storeId}">
 
-    <div>
-        <label>메뉴 이름</label>
-        <input type="text" name="name" required>
-    </div>
+        <div>
+            <label>메뉴 이름</label>
+            <input type="text" name="name" required>
+        </div>
 
-    <div>
-        <label>가격</label>
-        <input type="number" name="price" required>
-    </div>
+        <div>
+            <label>가격</label>
+            <input type="number" name="price" required>
+        </div>
 
-    <button type="submit">메뉴 등록</button>
-</form>
-<a th:href="@{/seller/home}">메인으로</a>
+        <button type="submit">메뉴 등록</button>
+    </form>
+    <a th:href="@{/seller/home}">메인으로</a>
+</div>
 </body>
 </html>
